@@ -1,0 +1,49 @@
+<mvc:View controllerName="worklist.controller.Product"
+    xmlns="sap.m"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:mvc="sap.ui.core.mvc"
+   	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+    <Page title = "Product Page">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:Form  editable="false">
+                    <f:layout>
+                        <!-- <f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" /> -->
+                   	<f:ColumnLayout />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Product">
+                                    <f:fields>
+                                        <Text text="{Product>/ProductID}" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Category">
+                                    <f:fields>
+                                        <Text text="{Product>/Category}" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Description">
+                                    <f:fields>
+                                        <Text text="{Product>/Description}" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="SupplierName">
+                                    <f:fields>
+                                        <Text text="{Product>/SupplierName}" />
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+
+              <Button text="FullScreen" press="onFullScreen"/>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
