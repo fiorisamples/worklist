@@ -6,7 +6,8 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     xmlns:u="sap.ui.unified">
-    <semantic:DetailPage navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{ path : 'SalesOrderID',                 formatter : '.formatter.SalesOrderID'} - {Note}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+    <semantic:DetailPage navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{ path : 'SalesOrderID',     
+                    formatter : '.formatter.SalesOrderID'} - {Note}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
         <semantic:content>
             <ObjectHeader title = " Sales Order# : {path : 'SalesOrderID',          
                                                   formatter : '.formatter.SalesOrderID'}" 

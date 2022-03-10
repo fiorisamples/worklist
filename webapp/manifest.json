@@ -1,156 +1,173 @@
 {
-  "_version": "1.32.0",
-  "sap.app": {
-    "id": "worklist",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "dataSources": {
-      "mainService": {
-        "uri": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "worklist",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "Northwind.svc": {
+                "uri": "/V2/Northwind/Northwind.svc/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": [],
+                    "localUri": "localService/Northwind.svc/metadata.xml"
+                }
+            }
         }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
     },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.97.2",
-      "libs": {
-        "sap.ui.core": {},
-        "sap.m": {},
-        "sap.f": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "worklist.i18n.i18n"
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
         }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {}
-      }
     },
-    "resources": {
-      "css": []
-    },
-    "routing": {
-      "config": {
-        "routerClass": "sap.f.routing.Router",
-        "viewType": "XML",
-        "viewPath": "worklist.view",
-        "controlId": "layout",
-        "controlAggregation": "beginColumnPages",
-        "bypassed": {
-          "target": [
-            "notFound"
-          ]
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.97.2",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {}
+            }
         },
-        "async": true
-      },
-      "routes": [
-        {
-          "pattern": "",
-          "name": "list",
-          "target": "list"
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         },
-        {
-          "pattern": "SalesOrderSet/{objectId}",
-          "name": "object",
-          "target": [
-            "list",
-            "object"
-          ]
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "worklist.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "Northwind": {
+                "dataSource": "Northwind.svc",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false
+                }
+            }
         },
-        {
-            "pattern": "SalesOrderSet/{objectId}/ProductSet/{Product}",
-             "name" :"product",
-             "target": [
-                "list",
-                "object",
-                "product"
-              ]
-        }, {
-            "pattern": "FullScreen",
-            "name": "fullscreen",
-            "target": "fullscreen"
-          }
-      ],
-      "targets": {
-        "list": {
-          "viewName": "List",
-          "viewLevel": 1,
-          "viewId": "list"
+        "resources": {
+            "css": []
         },
-        "object": {
-          "viewName": "Detail",
-          "viewId": "detail",
-          "viewLevel": 1,
-          "controlAggregation": "midColumnPages"
+        "routing": {
+            "config": {
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "viewPath": "worklist.view",
+                "controlId": "layout",
+                "controlAggregation": "beginColumnPages",
+                "bypassed": {
+                    "target": [
+                        "notFound"
+                    ]
+                },
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "list",
+                    "target": "list"
+                },
+                {
+                    "pattern": "SalesOrderSet/{objectId}",
+                    "name": "object",
+                    "target": [
+                        "list",
+                        "object"
+                    ]
+                },
+                {
+                    "pattern": "SalesOrderSet/{objectId}/ProductSet/{Product}",
+                    "name": "product",
+                    "target": [
+                        "list",
+                        "object",
+                        "product"
+                    ]
+                },
+                {
+                    "pattern": "FullScreen",
+                    "name": "fullscreen",
+                    "target": "fullscreen"
+                }
+            ],
+            "targets": {
+                "list": {
+                    "viewName": "List",
+                    "viewLevel": 1,
+                    "viewId": "list"
+                },
+                "object": {
+                    "viewName": "Detail",
+                    "viewId": "detail",
+                    "viewLevel": 1,
+                    "controlAggregation": "midColumnPages"
+                },
+                "product": {
+                    "viewName": "Product",
+                    "viewId": "Product",
+                    "viewLevel": 1,
+                    "controlAggregation": "endColumnPages"
+                },
+                "fullscreen": {
+                    "viewName": "Fullscreen",
+                    "viewId": "fullscreen",
+                    "viewLevel": 2,
+                    "controlAggregation": "endColumnPages"
+                },
+                "detailObjectNotFound": {
+                    "viewName": "DetailObjectNotFound",
+                    "viewId": "detailObjectNotFound",
+                    "controlAggregation": "midColumnPages"
+                },
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                }
+            }
         },
-      
-          "product": {
-            "viewName": "Product",
-            "viewId": "Product",
-            "viewLevel": 1,
-            "controlAggregation": "endColumnPages"
-          },
-          
-          "fullscreen": {
-            "viewName": "Fullscreen",
-            "viewId": "fullscreen",
-            "viewLevel": 2,
-            "controlAggregation": "endColumnPages"
-          },
-        "detailObjectNotFound": {
-          "viewName": "DetailObjectNotFound",
-          "viewId": "detailObjectNotFound",
-          "controlAggregation": "midColumnPages"
-        },
-        "notFound": {
-          "viewName": "NotFound",
-          "viewId": "notFound"
+        "rootView": {
+            "viewName": "worklist.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
         }
-      }
-    },
-    "rootView": {
-      "viewName": "worklist.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "app"
     }
-  }
 }
